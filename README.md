@@ -140,9 +140,113 @@ Virtual machines are heavier because they include a full operating system
 Containers are ideal for modern DevOps workflows
 Virtual machines are useful when complete isolation is required
 
+# Docker Images Foundation
+
 ---
 
-## Final Summary
+## What is a Docker Image
 
-Containers focus on speed, scalability, and efficiency
-Virtual machines focus on isolation, compatibility, and full system control
+A Docker image is a read only template used to create containers
+It contains application code runtime libraries dependencies and configuration required to run an application
+
+An image does not run by itself
+It becomes a running instance called a container
+
+---
+
+## Key Characteristics
+
+Read only
+Layered structure
+Reusable
+Portable across environments
+
+---
+
+## How Images are Created
+
+Images are built using a Dockerfile
+
+A Dockerfile is a set of instructions that defines how the image should be built
+
+---
+
+## Example Dockerfile
+
+```
+FROM nginx
+COPY . /usr/share/nginx/html
+RUN apt-get update
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+---
+
+## Image Build Flow
+
+Step 1 Write Dockerfile
+Define base image and application setup
+
+Step 2 Build Image
+Run docker build command to create image
+
+Step 3 Store Image
+Image is stored locally on the system
+
+Step 4 Push Image
+Image can be pushed to a registry like Docker Hub
+
+Step 5 Pull Image
+Other systems can pull the image from registry
+
+Step 6 Run Container
+Image is used to create and run a container
+
+---
+
+## Example Flow
+
+```
+Dockerfile → docker build → Image → docker push → Registry → docker pull → docker run → Container
+```
+
+---
+
+## Image Layers Concept
+
+Each instruction in Dockerfile creates a layer
+
+Layers are cached and reused which improves performance
+
+Example
+
+Base image layer
+Application dependencies layer
+Application code layer
+
+---
+
+## Important Commands
+
+docker build builds an image
+docker images lists images
+docker pull downloads image
+docker push uploads image
+docker run creates container from image
+
+---
+
+## Key Points
+
+Images are the foundation of containers
+Containers are created from images
+Images are immutable meaning they do not change once created
+Layering improves efficiency and reuse
+
+---
+
+## Final Understanding
+
+Docker image is a packaged blueprint of an application
+It ensures consistency across environments
+It is the starting point for running containers
