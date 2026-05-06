@@ -487,3 +487,156 @@ STOPSIGNAL
 HEALTHCHECK
 SHELL
 ```
+
+## 1. Named Volumes
+
+Named volumes are managed by Docker and stored in Docker’s internal directory.
+
+### Key Characteristics
+
+Managed by Docker
+Independent of container lifecycle
+Portable and reusable
+
+### Use Cases
+
+Databases such as MySQL PostgreSQL MongoDB
+Application persistent data
+Logs storage
+Shared storage between containers
+Backup and restore systems
+
+---
+
+## 2. Bind Mounts
+
+Bind mounts map a directory from the host system directly into the container.
+
+### Key Characteristics
+
+Direct access to host filesystem
+Tightly coupled with host path
+Immediate reflection of changes
+
+### Use Cases
+
+Development environments for live code changes
+Debugging containers
+External configuration files
+Accessing logs directly from host
+
+---
+
+## 3. Anonymous Volumes
+
+Anonymous volumes are created automatically without a name.
+
+### Key Characteristics
+
+Managed by Docker
+No explicit naming
+Difficult to track
+
+### Use Cases
+
+Temporary data storage
+Short-lived containers
+Intermediate processing
+
+---
+
+# Extended Storage Options
+
+---
+
+## 4. tmpfs Mounts
+
+tmpfs mounts store data in memory instead of disk.
+
+### Key Characteristics
+
+Stored in RAM
+Data lost when container stops
+Very fast performance
+
+### Use Cases
+
+Sensitive data such as secrets
+Temporary processing data
+Caching for high-speed applications
+
+---
+
+## 5. Volume Drivers
+
+Volume drivers allow integration with external storage systems.
+
+### Key Characteristics
+
+Supports cloud and network storage
+Enables distributed storage
+Useful for multi-host setups
+
+### Examples
+
+Cloud storage such as AWS EBS Azure Disk
+Network storage such as NFS
+
+### Use Cases
+
+Production-grade persistent storage
+Distributed systems
+Kubernetes and cluster environments
+
+---
+
+## 6. Mount Syntax Types
+
+Docker supports different mount styles using the mount flag.
+
+### Types
+
+type volume
+type bind
+type tmpfs
+
+### Use Cases
+
+Explicit and controlled mounting in production
+Better readability and configuration management
+
+---
+
+# Comparison Overview
+
+| Type             | Persistence | Managed By | Best Use Case                 |
+| ---------------- | ----------- | ---------- | ----------------------------- |
+| Named Volume     | Yes         | Docker     | Production data               |
+| Bind Mount       | Yes         | User       | Development and debugging     |
+| Anonymous Volume | Yes         | Docker     | Temporary storage             |
+| tmpfs            | No          | Memory     | Sensitive or fast data        |
+| Volume Drivers   | Yes         | External   | Cloud and distributed storage |
+
+---
+
+# Real Production Mapping
+
+Databases use named volumes
+Application logs use named volumes
+Microservices share volumes when needed
+Development uses bind mounts
+Sensitive data uses tmpfs
+Cloud environments use volume drivers
+
+---
+
+# Key Takeaways
+
+Named volumes are best for production
+Bind mounts are best for development
+Anonymous volumes are rarely used
+tmpfs is for memory-based storage
+Volume drivers enable enterprise storage
+
+---
+
