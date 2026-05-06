@@ -458,7 +458,7 @@ Images are built step by step
 CMD and ENTRYPOINT define runtime behavior
 
 ## Build-time Instructions
-
+```
 FROM
 RUN
 COPY
@@ -486,6 +486,4 @@ USER
 STOPSIGNAL
 HEALTHCHECK
 SHELL
-
----
-
+```
