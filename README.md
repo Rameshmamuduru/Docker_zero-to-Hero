@@ -457,11 +457,35 @@ Each instruction creates a new layer
 Images are built step by step
 CMD and ENTRYPOINT define runtime behavior
 
+## Build-time Instructions
+
+FROM
+RUN
+COPY
+ADD
+WORKDIR
+ARG
+ONBUILD
+
 ---
 
-## Final Understanding
+## Runtime Instructions
 
-Dockerfile defines how your application is packaged
-It ensures consistent builds and deployments
-It is the foundation for container-based workflows
+CMD
+ENTRYPOINT
+
+---
+
+## Configuration / Metadata Instructions
+
+ENV
+LABEL
+EXPOSE
+VOLUME
+USER
+STOPSIGNAL
+HEALTHCHECK
+SHELL
+
+---
 
