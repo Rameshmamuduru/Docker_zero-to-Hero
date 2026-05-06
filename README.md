@@ -250,3 +250,218 @@ Layering improves efficiency and reuse
 Docker image is a packaged blueprint of an application
 It ensures consistency across environments
 It is the starting point for running containers
+
+
+# What is a Dockerfile
+
+A Dockerfile is a text file that contains a set of instructions used to build a Docker image
+
+It defines how an application environment should be created including base image dependencies configuration and startup commands
+
+Docker reads this file and builds an image step by step
+
+---
+
+## Why Dockerfile is used
+
+Automates image creation
+Ensures consistency across environments
+Supports version control
+Makes deployments repeatable
+
+---
+
+## Basic Structure of Dockerfile
+
+```Dockerfile
+FROM base_image
+WORKDIR /app
+COPY . .
+RUN install_dependencies
+CMD ["run_application"]
+```
+
+---
+
+## Common Dockerfile Instructions
+
+---
+
+### FROM
+
+Defines the base image
+
+```Dockerfile
+FROM nginx
+```
+
+Every Dockerfile must start with FROM
+
+---
+
+### WORKDIR
+
+Sets the working directory inside container
+
+```Dockerfile
+WORKDIR /app
+```
+
+---
+
+### COPY
+
+Copies files from local system to container
+
+```Dockerfile
+COPY . /app
+```
+
+---
+
+### ADD
+
+Similar to COPY but can also download files from URLs and extract archives
+
+```Dockerfile
+ADD file.tar.gz /app
+```
+
+---
+
+### RUN
+
+Executes commands during image build
+
+```Dockerfile
+RUN apt-get update
+RUN apt-get install -y nginx
+```
+
+---
+
+### CMD
+
+Defines default command when container starts
+
+```Dockerfile
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+Only one CMD is used last one overrides previous
+
+---
+
+### ENTRYPOINT
+
+Defines main command that always runs
+
+```Dockerfile
+ENTRYPOINT ["nginx"]
+```
+
+---
+
+### EXPOSE
+
+Specifies which port container will use
+
+```Dockerfile
+EXPOSE 80
+```
+
+---
+
+### ENV
+
+Sets environment variables
+
+```Dockerfile
+ENV APP_ENV=production
+```
+
+---
+
+### ARG
+
+Defines build time variables
+
+```Dockerfile
+ARG VERSION=1.0
+```
+
+---
+
+### VOLUME
+
+Creates mount point for persistent storage
+
+```Dockerfile
+VOLUME /data
+```
+
+---
+
+### USER
+
+Specifies user to run container
+
+```Dockerfile
+USER appuser
+```
+
+---
+
+### LABEL
+
+Adds metadata to image
+
+```Dockerfile
+LABEL version="1.0"
+```
+
+---
+
+## Example Dockerfile
+
+```Dockerfile
+FROM node:18
+
+WORKDIR /app
+
+COPY package.json .
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
+```
+
+---
+
+## Build Flow
+
+Write Dockerfile
+Run docker build to create image
+Image is stored locally
+Run docker run to start container
+
+---
+
+## Key Points
+
+Dockerfile is blueprint for creating images
+Each instruction creates a new layer
+Images are built step by step
+CMD and ENTRYPOINT define runtime behavior
+
+---
+
+## Final Understanding
+
+Dockerfile defines how your application is packaged
+It ensures consistent builds and deployments
+It is the foundation for container-based workflows
+
